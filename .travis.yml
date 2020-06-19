@@ -1,5 +1,5 @@
 language: java
-install: skip
+
 
 os: linux
 dist: trusty
@@ -7,3 +7,4 @@ jdk: openjdk13
 
 script:
   - ./gradlew build --scan -s
+
