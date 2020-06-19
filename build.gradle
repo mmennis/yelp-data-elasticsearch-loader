@@ -18,12 +18,16 @@ plugins {
 
     // Add idea plugin
     id 'idea'
+
+    // Docker plugin
+    id "com.bmuschko.docker-remote-api" version "6.4.0"
 }
 
 repositories {
     // Use jcenter for resolving dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
+
 }
 
 dependencies {
