@@ -27,3 +27,6 @@ hs_err_pid*
 
 # Ignore Gradle build output directory
 build
+/yelp-data-elasticsearch-loader.iml
+/yelp-data-elasticsearch-loader.ipr
+/yelp-data-elasticsearch-loader.iws

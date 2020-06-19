@@ -15,6 +15,9 @@ plugins {
 
     // Apply the groovy plugin to also add support for Groovy (needed for Spock)
     id 'groovy'
+
+    // Add idea plugin
+    id 'idea'
 }
 
 repositories {
@@ -24,8 +27,16 @@ repositories {
 }
 
 dependencies {
+
+    // Compile dependencies
+    compile 'org.apache.commons:commons-lang3:3.10'
+
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:29.0-jre'
+    implementation 'org.elasticsearch:elasticsearch:7.6.0'
+    implementation 'org.elasticsearch.client:elasticsearch-rest-high-level-client:7.6.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.10.4'
+    implementation 'commons-io:commons-io:2.4'
 
     // Use the latest Groovy version for Spock testing
     testImplementation 'org.codehaus.groovy:groovy-all:2.5.11'

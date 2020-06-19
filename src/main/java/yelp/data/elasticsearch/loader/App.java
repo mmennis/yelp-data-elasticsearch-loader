@@ -3,12 +3,16 @@
  */
 package yelp.data.elasticsearch.loader;
 
+import yelp.data.elasticsearch.loader.index.utils.ElasticsearchIndexCreator;
+
+import java.io.File;
+
 public class App {
-    public String getGreeting() {
-        return "Hello world.";
-    }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+
+        File datasetDirectory = new File(".");
+        YelpDataLoader loader = new YelpDataLoader(datasetDirectory);
+
     }
 }
