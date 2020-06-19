@@ -39,6 +39,7 @@ public class YelpBusinessDataIndexCreator extends ElasticsearchIndexCreator {
     properties.put("attributes.ByAppointmentOnly", getBooleanMessage());
     properties.put("attributes.RestaurantsPriceRange2", getIntMessage());
     properties.put("attributes.BusinessParking", getNestedMessage());
+    properties.put("hours", getNestedMessage());
 
     _mapping.put("properties", properties);
   }

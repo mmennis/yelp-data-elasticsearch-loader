@@ -11,7 +11,7 @@ import java.util.Map;
 
 public abstract class GenericDataProcessor {
 
-  private ObjectMapper objectMapper;
+  protected ObjectMapper objectMapper;
   private String jsonString;
   private Map<String, Object> jsonObject;
 

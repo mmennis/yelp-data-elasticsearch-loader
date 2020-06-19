@@ -16,14 +16,14 @@ class YelpBusinessDataProcessorTest extends Specification {
     processor = new YelpBusinessDataProcessor()
   }
 
-  void cleanup() {
-  }
-
-  def "empty test"() {
+  def "processor should consolidate lat and long data into a location map"() {
     when:
-//      processor.p
-      def i = 1 + 1
+      processor.parseJsonDataString(jsonData)
+      processor.process()
     then:
-      i == 2
+      processor.getJsonObject().containsKey("location")
+      processor.getJsonObject().get("location") instanceof Map<String, Object>
+      !processor.getJsonObject().containsKey("latitude")
+      !processor.getJsonObject().containsKey("longitude")
   }
 }
