@@ -3,16 +3,33 @@
  */
 package yelp.data.elasticsearch.loader;
 
-import yelp.data.elasticsearch.loader.index.utils.ElasticsearchIndexCreator;
+import org.elasticsearch.client.RestHighLevelClient;
 
 import java.io.File;
+import java.util.Properties;
 
 public class App {
 
     public static void main(String[] args) {
 
-        File datasetDirectory = new File(".");
-        YelpDataLoader loader = new YelpDataLoader(datasetDirectory);
+        String datasetDirectoryName = args[0];
+        Properties props = new Properties();
+        RestHighLevelClient client = ElasticsearchRestClientFactory.getClient(props);
+        File datasetDirectory = new File(datasetDirectoryName);
+        try {
+            System.out.println("Data set directory: " + datasetDirectory.getPath());
+            if (datasetDirectory.isDirectory()) {
+                YelpDataLoader loader = new YelpDataLoader(datasetDirectory, client);
+                loader.execute();
+            } else {
+                throw new Exception("Command line provided arg directory is not found");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
+        System.exit(0);
     }
+
+
 }

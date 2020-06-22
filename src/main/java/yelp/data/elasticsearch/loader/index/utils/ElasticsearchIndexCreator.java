@@ -7,7 +7,6 @@ import org.elasticsearch.client.indices.CreateIndexResponse;
 import org.elasticsearch.common.settings.Settings;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -21,12 +20,14 @@ public abstract class ElasticsearchIndexCreator {
   private int _replicaCount;
   protected Map<String, Object> _mapping;
 
-  public ElasticsearchIndexCreator(RestHighLevelClient client, String datasetName) {
+  public ElasticsearchIndexCreator(String datasetName, RestHighLevelClient client) {
     this._datasetName = datasetName;
     this._client = client;
+    this._shardCount = 5;
+    this._replicaCount = 1;
   }
 
-  public abstract void addMapping(Map<String, Object> mapping);
+  public abstract void addMapping();
 
   public void createIndex() throws Exception {
     CreateIndexRequest request = new CreateIndexRequest((this._datasetName));
@@ -35,11 +36,10 @@ public abstract class ElasticsearchIndexCreator {
         .put("index.number_of_replicas", this._replicaCount);
     request.settings(settingsBuilder);
     if (_mapping == null) {
-      throw new Exception("Unexpect state: Index mapping for " + this._datasetName + " is missing");
+      LOGGER.severe("Unexpected state: Index mapping for " + this._datasetName + " is missing");
+      throw new Exception("Unexpected state: Index mapping for " + this._datasetName + " is missing");
     }
     request.mapping(_mapping);
-//    request.validate();
-//    request.toString();
     try {
       LOGGER.info("Preparing to create index " + this._datasetName +
             " " + getShardCount() + ", " + getReplicaCount() + " replicas.");

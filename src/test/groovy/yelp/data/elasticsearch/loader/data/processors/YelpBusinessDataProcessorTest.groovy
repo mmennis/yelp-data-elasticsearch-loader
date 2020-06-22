@@ -16,6 +16,14 @@ class YelpBusinessDataProcessorTest extends Specification {
     processor = new YelpBusinessDataProcessor()
   }
 
+  def "Processor must add an id field to the new map object"() {
+    when:
+      processor.parseJsonDataString(jsonData)
+      processor.process()
+    then:
+      processor.getJsonObject().containsKey("id")
+  }
+
   def "processor should consolidate lat and long data into a location map"() {
     when:
       processor.parseJsonDataString(jsonData)

@@ -19,7 +19,13 @@ public class ElasticsearchTypeMappingUtils {
 
   public static Map<String, Object> getIntMessage() {
     Map<String, Object> message = new HashMap<>();
-    message.put("type", "int");
+    message.put("type", "integer");
+    return message;
+  }
+
+  public static Map<String, Object> getFloatMessage() {
+    Map<String, Object> message = new HashMap<>();
+    message.put("type", "float");
     return message;
   }
 
@@ -32,6 +38,22 @@ public class ElasticsearchTypeMappingUtils {
   public static Map<String, Object> getBooleanMessage() {
     Map<String, Object> message = new HashMap<>();
     message.put("type", "boolean");
+    return message;
+  }
+
+  public static Map<String, Object> getDateMessage() {
+    Map<String, Object> message = new HashMap<>();
+    message.put("type", "date");
+    message.put("format", "yyyy-MM-dd HH:mm:ss");
+    message.put("index", "true");
+    return message;
+  }
+
+  public static Map<String, Object> getTimestampMessage() {
+    Map<String, Object> message = new HashMap<>();
+    message.put("type", "date");
+    message.put("format", "epoch_millis");
+    message.put("index", "true");
     return message;
   }
 

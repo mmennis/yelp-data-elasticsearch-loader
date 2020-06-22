@@ -25,7 +25,7 @@ public abstract class GenericDataProcessor {
     this.jsonString = jsonData;
     this.jsonObject = objectMapper.readValue(this.jsonString, new TypeReference<Map<String, Object>>(){});
   }
-
+  
   public Map<String, Object> getProcessedJson() {
     return null;
   }

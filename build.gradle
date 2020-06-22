@@ -54,3 +54,7 @@ application {
     // Define the main class for the application.
     mainClassName = 'yelp.data.elasticsearch.loader.App'
 }
+
+run {
+    args = ["YelpDataset/"]
+}

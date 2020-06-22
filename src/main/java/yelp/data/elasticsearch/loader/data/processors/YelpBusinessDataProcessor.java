@@ -15,11 +15,15 @@ public class YelpBusinessDataProcessor extends GenericDataProcessor {
     Map<String, Object> jsonObject = getJsonObject();
     Map<String, Object> locationMap = new HashMap<>();
 
+    jsonObject.put("id", jsonObject.get("business_id"));
+    jsonObject.put("timestamp", System.currentTimeMillis());
+
     locationMap.put("lat", jsonObject.get("latitude"));
     locationMap.put("lon", jsonObject.get("longitude"));
     jsonObject.put("location", locationMap);
     jsonObject.remove("latitude");
     jsonObject.remove("longitude");
+
 
   }
 
